@@ -1,9 +1,9 @@
 # Blog Theme
 
 ```bash
-docker run --rm -d --name blog-theme-ghost -p 3001:2368 -v $PWD/content:/var/lib/ghost/content ghost:1-alpine
-docker run --rm -d --name blog-theme-ghost -p 3001:2368 ghost:1-alpine
-docker run -d --name blog-theme-ghost -v $PWD/content:/var/lib/ghost/content ghost:1-alpine
+docker run --rm -d --name blog-theme-ghost -p 3001:2368 -v $PWD/content:/var/lib/ghost/content ghost:3-alpine
+docker run --rm -d --name blog-theme-ghost -p 3001:2368 ghost:3-alpine
+docker run -d --name blog-theme-ghost -v $PWD/content:/var/lib/ghost/content ghost:3-alpine
 ```
 
 ```bash
