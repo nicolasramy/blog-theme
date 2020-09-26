@@ -1,18 +1,12 @@
 # Blog Theme
 
 ```bash
-docker run --rm -d --name blog-theme-ghost -p 3001:2368 -v $PWD/content:/var/lib/ghost/content ghost:3-alpine
-docker run --rm -d --name blog-theme-ghost -p 3001:2368 ghost:3-alpine
-docker run -d --name blog-theme-ghost -v $PWD/content:/var/lib/ghost/content ghost:3-alpine
+npm install -g gscan
+npm install ghost-cli@latest -g
+
+
+docker-compose build
+
+
+docker-compose run --service-ports ghost-dev ash
 ```
-
-```bash
-docker build -t blog-theme .
-docker run --rm -i -t --name blog-theme-dev -v $PWD:/app blog-theme sh
-```
-
-
-```bash
-zip -r darkelda.zip darkelda
-```
-

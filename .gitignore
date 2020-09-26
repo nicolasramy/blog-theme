@@ -31,9 +31,21 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-content/
-
 darkelda.zip
 misc/
 
 */package-lock.json
+
+*.db
+
+.idea
+
+
+.ghostpid
+
+versions/
+
+content/data
+content/logs
+content/images
+content/themes/casper
