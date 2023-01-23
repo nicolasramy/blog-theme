@@ -45,7 +45,7 @@ misc/
 
 versions/
 
-content/data
-content/logs
-content/images
-content/themes/casper
+app/content/data
+app/content/logs
+app/content/images
+app/content/themes/casper
