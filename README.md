@@ -22,6 +22,8 @@ Run the development stack
 make up
 ```
 
+Set up Ghost instance -> http://127.0.0.1:2368/ghost/
+
 Create a new theme
 
 ```shell
@@ -41,3 +43,11 @@ If finished or deprecated, you can remove the theme with
 ```shell
 export THEME=example && make remove-theme
 ```
+
+http://127.0.0.1:2368/ghost/#/settings/design/change-theme
+
+
+## Documentation
+
+- https://hub.docker.com/_/ghost
+- https://hub.docker.com/_/mysql

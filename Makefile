@@ -136,8 +136,8 @@ new-theme:
 
 build-theme:
 	docker-compose run --rm app ash -c "cd /app/themes/$(THEME); npm run zip"
-	sudo chown $(USER):$(USER) app/themes/$(THEME)/$(THEME)-theme.zip
-	mv app/themes/$(THEME)/$(THEME)-theme.zip dist/
+	#sudo chown $(USER):$(USER) app/themes/$(THEME)/$(THEME)-theme.zip
+	cp app/themes/$(THEME)/$(THEME)-theme.zip dist/
 
 uninstall-theme:
 	sudo rm -r app/themes/$(THEME)
