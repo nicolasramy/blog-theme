@@ -106,7 +106,7 @@ install-htmx: installdirs
 	wget https://unpkg.com/htmx.org@2.0.2/dist/htmx.min.js -O app/static/js/htmx.min.js
 
 install-tailwind:
-	docker-compose run --rm app ash -c "cd tailwind; bash scripts/install.sh"
+	docker-compose run --rm app ash -c "cd /app/tailwind; ash scripts/install.sh"
 
 build-tailwind:
-	docker-compose run --rm app bash -c "cd tailwind; bash scripts/build.sh"
+	docker-compose run --rm app bash -c "cd /app/tailwind; ash scripts/build.sh"
