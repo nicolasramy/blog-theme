@@ -1,12 +1,24 @@
 # Blog Theme
 
-```bash
-npm install -g gscan
-npm install ghost-cli@latest -g
+A simple repository to create Ghost Themes with TailwindCSS, HTMx and AlpineJS 
 
+## Install
 
-docker-compose build
+```shell
+make installdirs 
+make configure
+make images
+```
 
+Or simply 
 
-docker-compose run --service-ports ghost-dev ash
+```shell
+make install
+
+```
+
+## Start
+
+```shell
+make up
 ```

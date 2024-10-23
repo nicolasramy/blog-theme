@@ -43,6 +43,3 @@ fabric.properties
 versions/
 
 app/content/
-
-mysql/
-data/
