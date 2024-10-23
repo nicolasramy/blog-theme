@@ -1,6 +1,6 @@
 <header id="gh-head" class="lg:px-16 px-4 flex flex-wrap justify-between py-4">
     <div class="">
-        <a class="text-3xl font-bold font-cocogoose text-primary-950" href="{{@site.url}}">
+        <a class="text-3xl font-bold text-primary-950 {{#match @custom.title_font "=" "Elegant serif"}} has-serif-title{{/match}}{{#match @custom.title_font "=" "Cocogoose Pro Regular"}} font-cocogoose{{/match}}" href="{{@site.url}}">
             {{#if @site.logo}}
                 <img src="{{@site.logo}}" alt="{{@site.title}}"/>
             {{else}}
