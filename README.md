@@ -21,4 +21,10 @@ make install
 
 ```shell
 make up
+
+export THEME=Darkelda && make install-theme
+export THEME=Darkelda && make build-theme
+
 ```
+
+

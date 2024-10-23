@@ -12,6 +12,7 @@ install: installdirs configure images
 # create directories required for installation
 installdirs:
 	mkdir -p data
+	mkdir -p dist
 	mkdir -p mysql/data
 	mkdir -p app/content
 
@@ -110,3 +111,36 @@ install-tailwind:
 
 build-tailwind:
 	docker-compose run --rm app bash -c "cd /app/tailwind; ash scripts/build.sh"
+
+install-starter:
+	docker-compose run --rm app ash -c "cd /app/themes/Starter; npm install"
+
+build-starter:
+	docker-compose run --rm app ash -c "cd /app/themes/Starter; npm run zip"
+	sudo chown $(USER):$(USER) app/themes/Starter/ghost-starter-theme.zip
+	mv app/themes/Starter/ghost-starter-theme.zip dist/
+
+new-theme:
+	mkdir -p app/themes/$(THEME)
+	cp -rv  app/themes/Starter/assets app/themes/$(THEME)/
+	cp -rv  app/themes/Starter/members app/themes/$(THEME)/
+	cp -rv  app/themes/Starter/partials app/themes/$(THEME)/
+	cp -rv  app/themes/Starter/*.hbs app/themes/$(THEME)/
+	cp -rv  app/themes/Starter/*.json app/themes/$(THEME)/
+	cp -rv  app/themes/Starter/*.js app/themes/$(THEME)/
+	cp -rv  app/themes/Starter/.editorconfig app/themes/$(THEME)/
+	cp -rv  app/themes/Starter/.gitignore app/themes/$(THEME)/
+	cp -rv  app/themes/Starter/LICENSE app/themes/$(THEME)/
+	cp -rv  app/themes/Starter/yarn.lock app/themes/$(THEME)/
+	echo "#$(THEME)" > app/themes/$(THEME)/READMED.md
+
+install-theme:
+	docker-compose run --rm app ash -c "cd /app/themes/$(THEME); npm install"
+
+build-theme:
+	docker-compose run --rm app ash -c "cd /app/themes/$(THEME); npm run zip"
+	sudo chown $(USER):$(USER) app/themes/$(THEME)/ghost-$(THEME)-theme.zip
+	mv app/themes/$(THEME)/ghost-$(THEME)-theme.zip dist/
+
+uninstall-theme:
+	sudo rm -r app/themes/$(THEME)
