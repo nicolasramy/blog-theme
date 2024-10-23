@@ -16,5 +16,13 @@
                 href="/privacy-policy">Privacy policy</a>
             <div class="h-4 w-px bg-slate-500/20"></div><a href="/changelog">Changelog</a>
         </div>
+            {{#if @site.secondary_navigation}}
+                <nav class="gh-foot-menu">
+                    {{navigation type="secondary"}}
+                </nav>
+            {{/if}}
+            <div class="gh-powered-by">
+                <a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a>
+            </div>
     </div>
 </footer>
