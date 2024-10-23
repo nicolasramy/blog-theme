@@ -100,25 +100,24 @@ bash:
 # App
 .PHONY: install-alpine install-htmx install-tailwind build-tailwind
 
-install-alpine: installdirs
-	wget https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js -O app/static/js/alpine.min.js
+install-alpine:
+	mkdir -p app/alpine
+	wget https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js -O app/alpine/alpine.min.js
 
-install-htmx: installdirs
-	wget https://unpkg.com/htmx.org@2.0.2/dist/htmx.min.js -O app/static/js/htmx.min.js
+install-htmx:
+	mkdir -p app/htmx
+	wget https://unpkg.com/htmx.org@2.0.2/dist/htmx.min.js -O app/htmx/htmx.min.js
+	docker-compose run --rm app bash -c "cd /app/tailwind; npm install tailwind-htmx"
 
 install-tailwind:
-	docker-compose run --rm app ash -c "cd /app/tailwind; ash scripts/install.sh"
+	docker-compose run --rm app bash -c "cd /app/tailwind; npm install tailwindcss \
+                                                            	       @tailwindcss/aspect-ratio \
+                                                            	       @tailwindcss/forms \
+                                                            	       @tailwindcss/line-clamp \
+                                                            	       @tailwindcss/typography"
 
 build-tailwind:
-	docker-compose run --rm app bash -c "cd /app/tailwind; ash scripts/build.sh"
-
-install-starter:
-	docker-compose run --rm app ash -c "cd /app/themes/Starter; npm install"
-
-build-starter:
-	docker-compose run --rm app ash -c "cd /app/themes/Starter; npm run zip"
-	sudo chown $(USER):$(USER) app/themes/Starter/ghost-starter-theme.zip
-	mv app/themes/Starter/ghost-starter-theme.zip dist/
+	docker-compose run --rm app bash -c "npx tailwindcss -i /app/tailwind/src/main.css -o /app/tailwind/src/output.css"
 
 new-theme:
 	mkdir -p app/themes/$(THEME)
@@ -132,15 +131,13 @@ new-theme:
 	cp -rv  app/themes/Starter/.gitignore app/themes/$(THEME)/
 	cp -rv  app/themes/Starter/LICENSE app/themes/$(THEME)/
 	cp -rv  app/themes/Starter/yarn.lock app/themes/$(THEME)/
-	echo "#$(THEME)" > app/themes/$(THEME)/READMED.md
-
-install-theme:
+	echo "#$(THEME)" > app/themes/$(THEME)/README.md
 	docker-compose run --rm app ash -c "cd /app/themes/$(THEME); npm install"
 
 build-theme:
 	docker-compose run --rm app ash -c "cd /app/themes/$(THEME); npm run zip"
-	sudo chown $(USER):$(USER) app/themes/$(THEME)/ghost-$(THEME)-theme.zip
-	mv app/themes/$(THEME)/ghost-$(THEME)-theme.zip dist/
+	sudo chown $(USER):$(USER) app/themes/$(THEME)/$(THEME)-theme.zip
+	mv app/themes/$(THEME)/$(THEME)-theme.zip dist/
 
 uninstall-theme:
 	sudo rm -r app/themes/$(THEME)
