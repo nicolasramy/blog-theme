@@ -25,7 +25,7 @@ make up
 Create a new theme
 
 ```shell
-export THEME=Example && make new-theme
+export THEME=example && make new-theme
 ```
 
 Change `name` in  `app/themes/$THEME/package.json`
@@ -33,11 +33,11 @@ Change `name` in  `app/themes/$THEME/package.json`
 Build a distributed version of the theme for Ghost 
 
 ```shell
-export THEME=Example && make build-theme
+export THEME=example && make build-theme
 ```
 
 If finished or deprecated, you can remove the theme with
 
 ```shell
-export THEME=Example && make remove-theme
+export THEME=example && make remove-theme
 ```

@@ -121,16 +121,16 @@ build-tailwind:
 
 new-theme:
 	mkdir -p app/themes/$(THEME)
-	cp -rv  app/themes/Starter/assets app/themes/$(THEME)/
-	cp -rv  app/themes/Starter/members app/themes/$(THEME)/
-	cp -rv  app/themes/Starter/partials app/themes/$(THEME)/
-	cp -rv  app/themes/Starter/*.hbs app/themes/$(THEME)/
-	cp -rv  app/themes/Starter/*.json app/themes/$(THEME)/
-	cp -rv  app/themes/Starter/*.js app/themes/$(THEME)/
-	cp -rv  app/themes/Starter/.editorconfig app/themes/$(THEME)/
-	cp -rv  app/themes/Starter/.gitignore app/themes/$(THEME)/
-	cp -rv  app/themes/Starter/LICENSE app/themes/$(THEME)/
-	cp -rv  app/themes/Starter/yarn.lock app/themes/$(THEME)/
+	cp -rv  app/themes/starter/assets app/themes/$(THEME)/
+	cp -rv  app/themes/starter/members app/themes/$(THEME)/
+	cp -rv  app/themes/starter/partials app/themes/$(THEME)/
+	cp -rv  app/themes/starter/*.hbs app/themes/$(THEME)/
+	cp -rv  app/themes/starter/*.json app/themes/$(THEME)/
+	cp -rv  app/themes/starter/*.js app/themes/$(THEME)/
+	cp -rv  app/themes/starter/.editorconfig app/themes/$(THEME)/
+	cp -rv  app/themes/starter/.gitignore app/themes/$(THEME)/
+	cp -rv  app/themes/starter/LICENSE app/themes/$(THEME)/
+	cp -rv  app/themes/starter/yarn.lock app/themes/$(THEME)/
 	echo "#$(THEME)" > app/themes/$(THEME)/README.md
 	docker-compose run --rm app ash -c "cd /app/themes/$(THEME); npm install"
 
