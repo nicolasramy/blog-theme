@@ -1,6 +1,6 @@
 {
     "name": "darkelda-theme",
-    "description": "Darkelda theme for Ghost",
+    "description": "darkelda theme for Ghost",
     "demo": "https://www.darkelda.com",
     "version": "1.0.0",
     "engines": {
@@ -80,35 +80,36 @@
             "xl": {
                 "width": 2000
             }
-        }
-    },
-    "card_assets": true,
-    "custom": {
-        "title_font": {
-            "type": "select",
-            "options": [
-                "Modern sans-serif",
-                "Elegant serif"
-            ],
-            "default": "Modern sans-serif"
         },
-        "body_font": {
-            "type": "select",
-            "options": [
-                "Modern sans-serif",
-                "Elegant serif"
-            ],
-            "default": "Modern sans-serif"
-        },
-        "show_author": {
-            "type": "boolean",
-            "default": true,
-            "group": "post"
-        },
-        "show_related_posts": {
-            "type": "boolean",
-            "default": true,
-            "group": "post"
+        "custom": {
+            "title_font": {
+                "type": "select",
+                "options": [
+                    "Cocogoose Pro Regular",
+                    "Modern sans-serif",
+                    "Elegant serif"
+                ],
+                "default": "Cocogoose Pro Regular"
+            },
+            "body_font": {
+                "type": "select",
+                "options": [
+                    "Cocogoose Pro Regular",
+                    "Modern sans-serif",
+                    "Elegant serif"
+                ],
+                "default": "Modern sans-serif"
+            },
+            "show_author": {
+                "type": "boolean",
+                "default": true,
+                "group": "post"
+            },
+            "show_related_posts": {
+                "type": "boolean",
+                "default": true,
+                "group": "post"
+            }
         }
     },
     "type": "module"

@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Cocogoose Pro";
+  src: url("../fonts/Cocogoose-Pro-Regular-trial.ttf");
+}

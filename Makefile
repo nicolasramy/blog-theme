@@ -117,7 +117,7 @@ install-tailwind:
                                                             	       @tailwindcss/typography"
 
 build-tailwind:
-	docker-compose run --rm app bash -c "npx tailwindcss -i /app/tailwind/src/main.css -o /app/tailwind/src/output.css"
+	docker-compose run --rm app bash -c "cd /app/tailwind; npx tailwindcss -i main.css -o src/tailwind.css"
 
 new-theme:
 	mkdir -p app/themes/$(THEME)
@@ -134,9 +134,11 @@ new-theme:
 	echo "#$(THEME)" > app/themes/$(THEME)/README.md
 	docker-compose run --rm app ash -c "cd /app/themes/$(THEME); npm install"
 
-build-theme:
+update-theme-tailwind: build-tailwind
+	cp app/tailwind/src/tailwind.css app/themes/$(THEME)/assets/css/tailwind.css
+
+build-theme: update-theme-tailwind
 	docker-compose run --rm app ash -c "cd /app/themes/$(THEME); npm run zip"
-	#sudo chown $(USER):$(USER) app/themes/$(THEME)/$(THEME)-theme.zip
 	cp app/themes/$(THEME)/$(THEME)-theme.zip dist/
 
 uninstall-theme:

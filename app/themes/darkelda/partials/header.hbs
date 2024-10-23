@@ -1,0 +1,32 @@
+<header id="gh-head" class="lg:px-16 px-4 flex flex-wrap justify-between py-4">
+    <div class="">
+        <a class="text-3xl font-bold font-cocogoose text-primary-950" href="{{@site.url}}">
+            {{#if @site.logo}}
+                <img src="{{@site.logo}}" alt="{{@site.title}}"/>
+            {{else}}
+                {{@site.title}}
+            {{/if}}
+        </a>
+        <a class="gh-burger" role="button" aria-label="menu">
+            <div class="gh-burger-box">
+                <div class="gh-burger-inner"></div>
+            </div>
+        </a>
+    </div>
+    <div class="hidden md:flex md:items-center md:w-auto w-full">
+        {{navigation}}
+    </div>
+    <div class="gh-head-actions">
+        <div class="gh-head-actions-list">
+            {{search}}
+            {{#if @site.members_enabled}}
+                {{^if @member}}
+                    <a class="gh-button" href="{{@site.signup_url}}">Subscribe</a>
+                {{else}}
+                    <a class="gh-button" href="#/portal/account">Account</a>
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+    </nav>
+</header>
