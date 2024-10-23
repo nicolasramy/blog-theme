@@ -100,24 +100,27 @@ def services_choices():
 def mysql_configuration():
     print(_subheader("MySQL Configuration"))
 
-    mysql_database = input("Database Name (ghost): ")
-    mysql_username = input("Username (root): ")
-    mysql_password = getpass("Password (secretpassword): ")
     mysql_hostname = input("Hostname (mysql): ")
     mysql_port = input("Port (3306): ")
+    mysql_root_password = getpass("Root Password (secretpassword): ")
+    mysql_username = input("Username (ghost): ")
+    mysql_password = getpass("Password (secretpassword): ")
+    mysql_database = input("Database Name (ghost): ")
 
-    mysql_database = mysql_database if mysql_database else "ghost"
-    mysql_username = mysql_username if mysql_username else "root"
-    mysql_password = mysql_password if mysql_password else "secretpassword"
     mysql_hostname = mysql_hostname if mysql_hostname else "mysql"
     mysql_port = mysql_port if mysql_port else 3306
+    mysql_root_password = mysql_root_password if mysql_root_password else "rootsecretpassword"  # noqa: E501
+    mysql_username = mysql_username if mysql_username else "ghost"
+    mysql_password = mysql_password if mysql_password else "secretpassword"
+    mysql_database = mysql_database if mysql_database else "ghost"
 
     configuration = {
-        "MYSQL_DB": mysql_database,
-        "MYSQL_USER": mysql_username,
-        "MYSQL_PASSWORD": mysql_password,
         "MYSQL_HOSTNAME": mysql_hostname,
         "MYSQL_PORT": mysql_port,
+        "MYSQL_ROOT_PASSWORD": mysql_root_password,
+        "MYSQL_USER": mysql_username,
+        "MYSQL_PASSWORD": mysql_password,
+        "MYSQL_DATABASE": mysql_database,
     }
     local_envs.update({"mysql": configuration})
 
@@ -143,7 +146,7 @@ def ghost_configuration():
         "database__connection__host": local_envs["mysql"]["MYSQL_HOSTNAME"],
         "database__connection__user": local_envs["mysql"]["MYSQL_USER"],
         "database__connection__password": local_envs["mysql"]["MYSQL_PASSWORD"],
-        "database__connection__database": local_envs["mysql"]["MYSQL_DB"],
+        "database__connection__database": local_envs["mysql"]["MYSQL_DATABASE"],
     }
 
     local_envs.update({"ghost": configuration})
