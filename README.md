@@ -2,6 +2,17 @@
 
 A simple repository to create Ghost Themes with TailwindCSS, HTMx and AlpineJS 
 
+## Requirements
+
+My project are designed to be executed in a Unix environment, and it can be executed with this small set of tools.
+
+My current configuration is available below: 
+
+- GNU Make 4.3 
+- Python 3.12.3
+- Docker CE 27.5.1
+- Docker Compose plugin 2.32.4
+
 ## Install
 
 ```shell
