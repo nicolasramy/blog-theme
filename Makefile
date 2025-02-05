@@ -33,7 +33,7 @@ clean:
 	# Stops containers and removes containers
 	# (even for services not defined in the Compose file),
 	# networks, volumes, and images created by up
-	docker-compose down -v --remove-orphans
+	docker compose down -v --remove-orphans
 
 	# Delete the refs to remote branches from origin that no longer exist
 	git remote prune origin
@@ -66,28 +66,28 @@ rmdirs:
 	sudo rm -rf app/content
 
 
-# docker-compose
+# docker compose
 .PHONY: up down restart images images-pull
 
 # start the application
 up:
-	docker-compose up
+	docker compose up
 
 # stop and remove artifacts of the application
 down:
-	docker-compose down --remove-orphans
+	docker compose down --remove-orphans
 
 # restart the application
 restart: down up
 
 # create docker images
 images:
-	docker-compose build --force-rm
+	docker compose build --force-rm
 
 # create docker images with pull
 images-pull:
-	docker-compose pull
-	docker-compose build --force-rm --pull
+	docker compose pull
+	docker compose build --force-rm --pull
 
 
 # development tools
@@ -95,7 +95,7 @@ images-pull:
 
 # open a bash CLI in the application container
 bash:
-	docker-compose run --rm app ash
+	docker compose run --rm app ash
 
 # App
 .PHONY: install-alpine install-htmx install-tailwind build-tailwind
@@ -107,17 +107,17 @@ install-alpine:
 install-htmx:
 	mkdir -p app/htmx
 	wget https://unpkg.com/htmx.org@2.0.2/dist/htmx.min.js -O app/htmx/htmx.min.js
-	docker-compose run --rm app bash -c "cd /app/tailwind; npm install tailwind-htmx"
+	docker compose run --rm app bash -c "cd /app/tailwind; npm install tailwind-htmx"
 
 install-tailwind:
-	docker-compose run --rm app bash -c "cd /app/tailwind; npm install tailwindcss \
+	docker compose run --rm app bash -c "cd /app/tailwind; npm install tailwindcss \
                                                             	       @tailwindcss/aspect-ratio \
                                                             	       @tailwindcss/forms \
                                                             	       @tailwindcss/line-clamp \
                                                             	       @tailwindcss/typography"
 
 build-tailwind:
-	docker-compose run --rm app bash -c "cd /app/tailwind; npx tailwindcss -i main.css -o src/tailwind.css"
+	docker compose run --rm app bash -c "cd /app/tailwind; npx tailwindcss -i main.css -o src/tailwind.css"
 
 new-theme:
 	mkdir -p app/themes/$(THEME)
@@ -132,13 +132,13 @@ new-theme:
 	cp -rv  app/themes/starter/LICENSE app/themes/$(THEME)/
 	cp -rv  app/themes/starter/yarn.lock app/themes/$(THEME)/
 	echo "#$(THEME)" > app/themes/$(THEME)/README.md
-	docker-compose run --rm app ash -c "cd /app/themes/$(THEME); npm install"
+	docker compose run --rm app ash -c "cd /app/themes/$(THEME); npm install"
 
 update-theme-tailwind: build-tailwind
 	cp app/tailwind/src/tailwind.css app/themes/$(THEME)/assets/css/tailwind.css
 
 build-theme: update-theme-tailwind
-	docker-compose run --rm app ash -c "cd /app/themes/$(THEME); npm run zip"
+	docker compose run --rm app ash -c "cd /app/themes/$(THEME); npm run zip"
 	cp app/themes/$(THEME)/$(THEME)-theme.zip dist/
 
 uninstall-theme:
