@@ -4,7 +4,7 @@ A simple repository to create Ghost Themes with TailwindCSS, HTMx and AlpineJS
 
 ## Requirements
 
-My project are designed to be executed in a Unix environment, and it can be executed with this small set of tools.
+My projects are designed to be executed in a Unix environment, and it can be executed with this small set of tools.
 
 My current configuration is available below: 
 
